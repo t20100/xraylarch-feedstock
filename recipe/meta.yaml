@@ -13,7 +13,7 @@ source:
     - 0002-MNT-remove-the-feff-wrappers-and-binaries.patch
 
 build:
-  number: 0
+  number: 1
   script: |
     # We do not have a license to distribute built FEFF binaries.
     # We may have one to deploy it to the floor, but definitely not to make
@@ -33,7 +33,7 @@ requirements:
     - fabio
     - h5py >=2.8
     - lmfit >=1.0
-    - matplotlib >=3.0
+    - matplotlib-base >=3.0
     - numpy >=1.7
     - peakutils >=1.0.0
     - pillow >=3.4
