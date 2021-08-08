@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/xraypy/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: fcd6b93452a5517814badb2a14f51eca1e137cbfa73b52022da6f39ca7fc01b1
-  patches:
-    # - 0001-MNT-remove-the-desktop-shortcut-logic.patch
-    # - 0002-MNT-remove-the-feff-wrappers-and-binaries.patch
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 41fee953ea308c52ecf0de11140cb89d5b7475f1a67ca69e7c71c15697bf117e
+  # patches:
+  #   - 0001-MNT-remove-the-desktop-shortcut-logic.patch
+  #   - 0002-MNT-remove-the-feff-wrappers-and-binaries.patch
 
 build:
   number: 0
