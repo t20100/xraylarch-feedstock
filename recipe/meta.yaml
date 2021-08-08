@@ -27,6 +27,7 @@ requirements:
   host:
     - python
     - pip
+    - setuptools_scm
   run:
     - python
     - asteval >=0.9.18
