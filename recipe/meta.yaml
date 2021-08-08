@@ -10,7 +10,7 @@ source:
   sha256: fcd6b93452a5517814badb2a14f51eca1e137cbfa73b52022da6f39ca7fc01b1
   patches:
     - 0001-MNT-remove-the-desktop-shortcut-logic.patch
-    - 0002-MNT-remove-the-feff-wrappers-and-binaries.patch
+    # - 0002-MNT-remove-the-feff-wrappers-and-binaries.patch
 
 build:
   number: 0
