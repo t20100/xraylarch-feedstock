@@ -1,25 +1,26 @@
 {% set name = "xraylarch" %}
-{% set version = "0.9.50" %}
+{% set version = "0.9.55" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/xraypy/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: f64eee63bca13a67d313a06c9b437502ea59a5ca961075756ebf453e9dc1da81
-  patches:
-    - 0001-MNT-remove-the-desktop-shortcut-logic.patch
-    - 0002-MNT-remove-the-feff-wrappers-and-binaries.patch
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 41fee953ea308c52ecf0de11140cb89d5b7475f1a67ca69e7c71c15697bf117e
 
 build:
-  number: 1
+  number: 0
+  entry_points:
+    - larch = larch.apps:run_larch
+    - larch_server = larch.apps:run_larch_server
+    - feff6l = larch.apps:run_feff6l
+    - feff8l = larch.apps:run_feff8l
+    - xas_viewer = larch.apps:run_xas_viewer
+    - gse_mapviewer = larch.apps:run_gse_mapviewer
+    - xrfdisplay = larch.apps:run_xrfdisplay
+    - xrfdisplay_epics = larch.apps:run_xrfdisplay_epics
   script: |
-    # We do not have a license to distribute built FEFF binaries.
-    # We may have one to deploy it to the floor, but definitely not to make
-    # them public, so remove binaries.
-    rm -rf larch/bin  # [not win]
-    rmdir /q /s larch/bin  # [win]
     {{ PYTHON }} -m pip install . --no-deps -vv
   skip: true  # [py<37]
 
@@ -27,19 +28,24 @@ requirements:
   host:
     - python
     - pip
+    - setuptools_scm
   run:
     - python
     - asteval >=0.9.18
     - fabio
     - h5py >=2.8
+    - importlib-metadata
     - lmfit >=1.0
     - matplotlib-base >=3.0
+    - numdifftools
     - numpy >=1.7
     - peakutils >=1.0.0
     - pillow >=3.4
     - psutil
     - pyFAI
+    - pymatgen
     - pyshortcuts >=1.7.2
+    - pytest
     - pyyaml
     - requests >=2.1
     - scikit-image
@@ -50,16 +56,30 @@ requirements:
     - sqlalchemy >=0.9
     - termcolor
     - uncertainties
+    - wxmplot
+    - wxpython
+    - wxutils
     - xraydb >=4.3
 
 test:
-  requires:
-    - pip
-    - pytest
-  commands:
-    - pip check
   imports:
     - larch
+    - larch.bin
+  commands:
+    - pip check
+    - larch --help
+    - larch_server --help
+    - feff6l --help
+    - feff8l --help
+    - xas_viewer --help
+    - gse_mapviewer --help
+    - xrfdisplay --help
+    - "xrfdisplay_epics --help || echo 'Failed, but RC=0'"  # [not win]
+  requires:
+    - pip
+    - psycopg2-binary
+    - pycifrw
+    - pyepics
 
 about:
   home: https://xraypy.github.io/xraylarch
