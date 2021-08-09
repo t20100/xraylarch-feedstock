@@ -33,6 +33,7 @@ requirements:
     - asteval >=0.9.18
     - fabio
     - h5py >=2.8
+    - importlib-metadata
     - lmfit >=1.0
     - matplotlib-base >=3.0
     - numdifftools
