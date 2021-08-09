@@ -78,6 +78,7 @@ test:
   requires:
     - pip
     - psycopg2-binary
+    - pycifrw
     - pyepics
 
 about:
