@@ -52,6 +52,7 @@ requirements:
     - sqlalchemy >=0.9
     - termcolor
     - uncertainties
+    - wxmplot
     - wxpython
     - wxutils
     - xraydb >=4.3
