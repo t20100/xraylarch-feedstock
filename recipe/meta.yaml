@@ -77,6 +77,8 @@ test:
     - xrfdisplay_epics --help
   requires:
     - pip
+    - psycopg2-binary
+    - pyepics
 
 about:
   home: https://xraypy.github.io/xraylarch
