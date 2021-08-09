@@ -35,6 +35,7 @@ requirements:
     - h5py >=2.8
     - lmfit >=1.0
     - matplotlib-base >=3.0
+    - numdifftools
     - numpy >=1.7
     - peakutils >=1.0.0
     - pillow >=3.4
