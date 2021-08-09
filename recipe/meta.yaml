@@ -45,6 +45,7 @@ requirements:
     - pyFAI
     - pymatgen
     - pyshortcuts >=1.7.2
+    - pytest
     - pyyaml
     - requests >=2.1
     - scikit-image
