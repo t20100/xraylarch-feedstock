@@ -8,18 +8,19 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 41fee953ea308c52ecf0de11140cb89d5b7475f1a67ca69e7c71c15697bf117e
-  # patches:
-  #   - 0001-MNT-remove-the-desktop-shortcut-logic.patch
-  #   - 0002-MNT-remove-the-feff-wrappers-and-binaries.patch
 
 build:
   number: 0
+  entry_points:
+    - larch = larch.apps:run_larch
+    - larch_server = larch.apps:run_larch_server
+    - feff6l = larch.apps:run_feff6l
+    - feff8l = larch.apps:run_feff8l
+    - xas_viewer = larch.apps:run_xas_viewer
+    - gse_mapviewer = larch.apps:run_gse_mapviewer
+    - xrfdisplay = larch.apps:run_xrfdisplay
+    - xrfdisplay_epics = larch.apps:run_xrfdisplay_epics
   script: |
-    # We do not have a license to distribute built FEFF binaries.
-    # We may have one to deploy it to the floor, but definitely not to make
-    # them public, so remove binaries.
-    # rm -rf larch/bin  # [not win]
-    # rmdir /q /s larch/bin  # [win]
     {{ PYTHON }} -m pip install . --no-deps -vv
   skip: true  # [py<37]
 
@@ -60,13 +61,21 @@ requirements:
     - xraydb >=4.3
 
 test:
-  requires:
-    - pip
-    - pytest
-  commands:
-    - pip check
   imports:
     - larch
+    - larch.bin
+  commands:
+    - pip check
+    - larch --help
+    - larch_server --help
+    - feff6l --help
+    - feff8l --help
+    - xas_viewer --help
+    - gse_mapviewer --help
+    - xrfdisplay --help
+    - xrfdisplay_epics --help
+  requires:
+    - pip
 
 about:
   home: https://xraypy.github.io/xraylarch
