@@ -68,7 +68,7 @@ test:
     - larch
     - larch.bin
   commands:
-    - pip check
+    # - pip check
     - larch --help
     - larch_server --help
     - feff6l --help
@@ -78,7 +78,7 @@ test:
     - xrfdisplay --help
     - xrfdisplay_epics --help || echo 'Failed, but RC=0'    # [not win]
   requires:
-    - pip
+    # - pip
     - psycopg2-binary
     - pycifrw
     - pyepics
