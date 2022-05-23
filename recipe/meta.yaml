@@ -57,6 +57,7 @@ requirements:
     - six >=1.10
     - sqlalchemy >=0.9
     - termcolor
+    - toml
     - uncertainties
     - wxmplot
     - wxpython
