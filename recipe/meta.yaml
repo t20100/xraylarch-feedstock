@@ -1,5 +1,5 @@
 {% set name = "xraylarch" %}
-{% set version = "0.9.60" %}
+{% set version = "0.9.66" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c347cfc9ded48fecf9611464b2563aa9a66f4803c9d6a401a13eb9b426868256
+  sha256: 79599cd0fc24b6362919a4892bfd2f655800a6b3173acdede0c58273513e3a1b
   patches:
     - 0001-PKG-patch-package_data.patch
 
