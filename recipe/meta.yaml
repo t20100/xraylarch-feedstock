@@ -34,6 +34,7 @@ requirements:
   run:
     - python
     - asteval >=0.9.18
+    - cchardet
     - fabio
     - h5py >=2.8
     - importlib-metadata
