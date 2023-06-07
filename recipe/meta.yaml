@@ -78,7 +78,7 @@ test:
     - xas_viewer --help
     - gse_mapviewer --help
     - xrfdisplay --help
-    - xrfdisplay_epics --help || echo 'Failed, but RC=0'    # [not win or osx]
+    - xrfdisplay_epics --help || echo 'Failed, but RC=0'    # [not (win or osx)]
   requires:
     # - pip
     - psycopg2-binary
