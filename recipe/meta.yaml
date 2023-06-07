@@ -95,6 +95,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - maurov
     - mrakitin
     - kbeeperez
     - conda-forge/event-model
