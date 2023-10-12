@@ -1,5 +1,5 @@
 {% set name = "xraylarch" %}
-{% set version = "0.9.71" %}
+{% set version = "0.9.72" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0394d9a02284f3befe84c12c683dfeb97fa4a577a5f572426990a750ff05cd99
+  sha256: 5bf2b6fcd9d19d3c30b0e5b3cca495019e0d208b17616ed9f7bbf6f78607484b
   patches:
     - 0001-PKG-patch-package_data.patch
 
@@ -19,12 +19,14 @@ build:
     - feff6l = larch.apps:run_feff6l
     - feff8l = larch.apps:run_feff8l
     - xas_viewer = larch.apps:run_xas_viewer
+    - larix = larch.apps:run_larix
     - gse_mapviewer = larch.apps:run_gse_mapviewer
-    - xrfdisplay = larch.apps:run_xrfdisplay
-    - xrfdisplay_epics = larch.apps:run_xrfdisplay_epics
-  script: |
-    {{ PYTHON }} -m pip install . --no-deps -vv
+    - larch_xrf = larch.apps:run_larch_xrf
+    - epics_xrf = larch.apps:run_epics_xrf
+    - larch_xrd1d = larch.apps:run_larch_xrd1d
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: true  # [py<37]
+
 
 requirements:
   host:
@@ -33,42 +35,66 @@ requirements:
     - setuptools_scm
   run:
     - python
-    - asteval >=0.9.18
-    - cchardet
-    - fabio
-    - h5py >=2.8
-    - importlib-metadata
-    - lmfit >=1.0
-    - matplotlib-base >=3.0
-    - numdifftools
-    - numpy >=1.7
-    - peakutils >=1.0.0
-    - pillow >=3.4
-    - psutil
-    - pyFAI
-    - pymatgen
-    - pyshortcuts >=1.7.2
-    - pytest
+    # setup.py -> install_requires
+    - packaging
+    - pip
     - pyyaml
-    - requests >=2.1
+    - toml
+    - pytest
+    - termcolor
+    - scipy >=1.7
+    - numpy >=1.20
+    - matplotlib-base >=3.5
+    - sqlalchemy >=2.0
+    - sqlalchemy-utils
+    - h5py >=3.2
+    - pillow >=8.3.2
+    - psycopg2-binary
+    - dill
+    - imageio
+    - charset-normalizer
+    - peakutils
+    - requests
     - scikit-image
     - scikit-learn
-    - scipy >=1.2
-    - silx >=1.0
-    - six >=1.10
-    - sqlalchemy >=0.9
-    - termcolor
-    - toml
-    - uncertainties
-    - wxmplot
-    - wxpython
-    - wxutils
-    - xraydb >=4.3
+    - asteval >=0.9.28
+    - lmfit >=1.2.0
+    - uncertainties >=3.1
+    - pyshortcuts >=1.9.0
+    - xraydb >=4.5
+    - silx >=0.15.2
+    - hdf5plugin
+    - numdifftools
+    - psutil
+    - pymatgen
+    - fabio
+    - pyfai
+    - numexpr ==2.8.4  # [py<39]
+    - numexpr >=2.8.7  # [py>38]
+    - pycifrw
+    - importlib-metadata  # [py<38]
+    # No import
+    # - pyopencl
+    # From requirements-extra.txt
+    - wxpython>=4.1
+    - wxutils>=0.3.0
+    - wxmplot>=0.9.53
+    - pyepics>=3.5.0
+    # Not available in conda-forge:
+    # - epicsapps
+    # From larch/site_config.py -> extra_pymatgen
+    - mp-api
+    - pandas
+    - py3dmol
+    # From installers/GetLarch.sh
+    - mkl_fft
+    - tomopy
+    # From https://github.com/xraypy/xraylarch/blob/master/doc/installation.rst#installing-into-an-existing-anaconda-python-environment
+    - openbabel
 
 test:
   imports:
     - larch
-    - larch.bin
   commands:
     # - pip check
     - larch --help
@@ -76,14 +102,13 @@ test:
     - feff6l --help
     - feff8l --help
     - xas_viewer --help
+    - larix --help
     - gse_mapviewer --help
-    - xrfdisplay --help
-    - xrfdisplay_epics --help || echo 'Failed, but RC=0'    # [not (win or osx)]
+    - larch_xrf --help
+    # - epics_xrf
+    # - larch_xrd1d
   requires:
     # - pip
-    - psycopg2-binary
-    - pycifrw
-    - pyepics
 
 about:
   home: https://xraypy.github.io/xraylarch
