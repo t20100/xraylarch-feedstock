@@ -73,7 +73,8 @@ requirements:
     - numexpr >=2.8.7  # [py>38]
     - pycifrw
     - importlib-metadata  # [py<38]
-    - pyopencl
+    # No import
+    # - pyopencl
     # From requirements-extra.txt
     - wxpython>=4.1
     - wxutils>=0.3.0
