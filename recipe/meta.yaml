@@ -76,10 +76,10 @@ requirements:
     # No import
     # - pyopencl
     # From requirements-extra.txt
-    - wxpython>=4.1
-    - wxutils>=0.3.0
-    - wxmplot>=0.9.53
-    - pyepics>=3.5.0
+    - wxpython >=4.1
+    - wxutils >=0.3.0
+    - wxmplot >=0.9.53
+    - pyepics >=3.5.0
     # Not available in conda-forge:
     # - epicsapps
     # From larch/site_config.py -> extra_pymatgen
