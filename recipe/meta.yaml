@@ -88,7 +88,8 @@ requirements:
     - py3dmol
     # From installers/GetLarch.sh
     - mkl_fft
-    - tomopy
+    # Kept as optional dependency
+    # - tomopy
     # From https://github.com/xraypy/xraylarch/blob/master/doc/installation.rst#installing-into-an-existing-anaconda-python-environment
     - openbabel
 
