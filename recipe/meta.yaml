@@ -67,7 +67,7 @@ outputs:
         - scikit-learn
         - psutil
         - pymatgen
-        - mp_api
+        - mp-api
         - pycifrw
         - fabio
         - pyfai-base
