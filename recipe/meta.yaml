@@ -22,15 +22,15 @@ outputs:
     build:
       entry_points:
         - larch = larch.apps:run_larch
-        - larch_server = larch.apps:run_larch_server
         - feff6l = larch.apps:run_feff6l
         - feff8l = larch.apps:run_feff8l
-        - xas_viewer = larch.apps:run_xas_viewer
+        - larch_server = larch.apps:run_larch_server
         - larix = larch.apps:run_larix
-        - gse_mapviewer = larch.apps:run_gse_mapviewer
+        - xasviewer = larch.apps:run_xas_viewer
         - larch_xrf = larch.apps:run_larch_xrf
-        - epics_xrf = larch.apps:run_epics_xrf
         - larch_xrd1d = larch.apps:run_larch_xrd1d
+        - gse_mapviewer = larch.apps:run_gse_mapviewer
+        - epics_xrf = larch.apps:run_epics_xrf
     requirements:
       host:
         - python
@@ -38,20 +38,28 @@ outputs:
         - setuptools_scm
       run:
         - python
+        - asteval >=0.9.28
+        - numpy >=1.20
+        - scipy >=1.7
+        - uncertainties >=3.1.4
+        - lmfit >=1.2.1
+        - uncertainties >=3.1
+        - pyshortcuts >=1.9.0
+        - xraydb >=4.5
+        - silx-base >=0.15.2
+        - matplotlib-base >=3.5
+        - sqlalchemy >=2.0
+        - sqlalchemy_utils
+        - h5py >=3.2
+        - hdf5plugin
+        - pillow >=8.3.2
+        - numdifftools
+        - pandas
         - packaging
         - pip
         - pyyaml
         - toml
-        - pytest
         - termcolor
-        - scipy >=1.7
-        - numpy >=1.20
-        - matplotlib-base >=3.5
-        - sqlalchemy >=2.0
-        - sqlalchemy-utils
-        - h5py >=3.2
-        - pillow >=8.3.2
-        - psycopg2-binary
         - dill
         - imageio
         - charset-normalizer
@@ -59,31 +67,21 @@ outputs:
         - requests
         - scikit-image
         - scikit-learn
-        - asteval >=0.9.28
-        - lmfit >=1.2.0
-        - uncertainties >=3.1
-        - pyshortcuts >=1.9.0
-        - xraydb >=4.5
-        - silx-base >=0.15.2
-        - hdf5plugin
-        - numdifftools
         - psutil
         - pymatgen
+        - mp_api
+        - pycifrw
         - fabio
         - pyfai-base
         - numexpr ==2.8.4  # [py<39]
         - numexpr >=2.8.7  # [py>38]
-        - pycifrw
-        - importlib-metadata  # [py<38]
-        # No import
-        # - pyopencl
     test:
       imports:
         - larch
-      # commands:
-      #   - pip check
-      # requires:
-      #   - pip
+      commands:
+        - pip check
+      requires:
+        - pip
 
   - name: xraylarch
     build:
@@ -95,38 +93,38 @@ outputs:
         - python
         - silx
         - pyfai
-        # From requirements-extra.txt
+        # wxgui extras_require
         - wxpython >=4.1
         - wxutils >=0.3.0
-        - wxmplot >=0.9.53
-        - pyepics >=3.5.0
-        # Not available in conda-forge:
-        # - epicsapps
-        # From larch/site_config.py -> extra_pymatgen
-        - mp-api
-        - pandas
+        - wxmplot >=0.9.57
+        # qtgui extras_require
+        - pyqt5
+        - pyqtwebengine
+        - pyqtgraph
+        # jupyter extras_require
+        - jupyter_core >=5.0
+        - jupyter_client
+        - jupyter_server
+        - notebook
+        - nbformat
+        - ipywidgets
+        - plotly
         - py3dmol
-        # From installers/GetLarch.sh
-        - mkl_fft
-        # Kept as optional dependency
-        # - tomopy
-        # From https://github.com/xraypy/xraylarch/blob/master/doc/installation.rst#installing-into-an-existing-anaconda-python-environment
-        - openbabel
         - {{ pin_subpackage('xraylarch-base', max_pin="x.x.x") }}
     test:
       imports:
         - larch
       commands:
         - larch --help
-        - larch_server --help
         - feff6l --help
         - feff8l --help
-        - xas_viewer --help
+        - larch_server --help
         - larix --help
-        - gse_mapviewer --help
+        - xasviewer --help
         - larch_xrf --help
-        # - epics_xrf
         # - larch_xrd1d
+        - gse_mapviewer --help
+        # - epics_xrf
 
 about:
   home: https://xraypy.github.io/xraylarch
