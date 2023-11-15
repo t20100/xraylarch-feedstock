@@ -96,7 +96,7 @@ outputs:
         - wxutils >=0.3.0
         - wxmplot >=0.9.57
         # qtgui extras_require
-        - pyqt5
+        - pyqt
         - pyqtwebengine
         - pyqtgraph
         # jupyter extras_require
