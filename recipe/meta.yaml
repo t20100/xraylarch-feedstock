@@ -1,5 +1,5 @@
 {% set name = "xraylarch" %}
-{% set version = "0.9.73" %}
+{% set version = "0.9.74" %}
 
 package:
   name: {{ name|lower }}-suite
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3c6ce1d26255aaff370e4a4beadd1bb61fee5d65a80f9b393f2f65e4c4400fe9
+  sha256: 40c7e821170d7290c87db522e96761853390c29782858a87bccd5b64c3f8ae5e
 
 build:
   number: 0
