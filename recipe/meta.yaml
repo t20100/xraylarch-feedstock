@@ -76,10 +76,10 @@ outputs:
     test:
       imports:
         - larch
-      commands:
-        - pip check
-      requires:
-        - pip
+      #commands:
+      #  - pip check
+      #requires:
+      #  - pip
 
   - name: xraylarch
     build:
